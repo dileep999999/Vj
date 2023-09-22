@@ -1,0 +1,55 @@
+mat-form-field {
+    width: 30%; /* Set the width as needed */
+    margin-bottom: 16px; /* Add some bottom margin */
+    
+  }
+  
+  /* Style the mat-input */
+  input {
+    font-size: 14px !important; 
+    
+    border: 2px solid black !important; 
+    border-radius: 4px;
+  }
+  
+  /* Style the mat-label */
+ 
+  .float-right{
+    float:right !important;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #0c0b0b;
+    
+  }
+  .footer{
+    margin-top:20px;
+    table{
+        border: none !important;
+    }
+    tr,td{
+        
+            border-style: none !important;
+          
+    }
+  }
+  
+  /* Add a border to table headers */
+  th {
+    border: 1px solid #ccc;
+    padding: 2px;
+  }
+  
+  /* Add a border to table cells */
+  td {
+    border: 1px solid #ccc;
+    padding: 2px;
+  }
+  
+  .w-50{
+    width: 50px !important;
+  }
+  .w-150{
+    width:150px !important;
+  }
