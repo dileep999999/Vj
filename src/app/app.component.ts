@@ -163,6 +163,7 @@ export class AppComponent {
     this.loopCount.forEach((x:any,i:number)=>{
       const dropCost = (<HTMLInputElement>document.getElementById(this.displayedColumns[5]+i+'value'))?.value;
       const drop = (<HTMLInputElement>document.getElementById(this.displayedColumns[5]+i))?.value;
+      if(drop && dropCost)
       value = value + Number(drop) * 5 * Number(dropCost);
     });
     return value;
@@ -172,12 +173,20 @@ export class AppComponent {
     this.loopCount.forEach((x:any,i:number)=>{
       const dropCost = (<HTMLInputElement>document.getElementById(this.displayedColumns[6]+i+'value'))?.value;
       const drop = (<HTMLInputElement>document.getElementById(this.displayedColumns[6]+i))?.value;
+      if(drop && dropCost)
       value = value + Number(drop) * 5 * Number(dropCost);
     });
     return value;
   }
   getLabourAmt() {
-    return 0;
+    let value = 0;
+    this.loopCount.forEach((x:any,i:number)=>{
+      const gross = (<HTMLInputElement>document.getElementById(this.displayedColumns[3]+i+'value'))?.value;
+      const labour = (<HTMLInputElement>document.getElementById(this.displayedColumns[12]+i))?.value;
+      if(gross && labour)
+      value = value + Number(gross) * Number(labour)
+    });
+    return value;
   }
  
 }
