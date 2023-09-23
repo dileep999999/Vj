@@ -52,9 +52,10 @@
     </thead>
     <tbody>
       <tr *ngFor="let loop of loopCount;index as i">
-        <td  style="text-align: center;" *ngFor="let x of displayedColumns;index as j"><input  [ngClass]="j==1 || j ==13 ? 'w-150' : 'w-50'" type ="text" [id]="displayedColumns[j]+i" (focusout)="focusout(i,j)">
+        
+        <td  style="text-align: center;" *ngFor="let x of displayedColumns;index as j"><input  [ngClass]="j==1 || j ==13 ? 'w-150' : 'w-50'" type ="text" [id]="displayedColumns[j]+i" (focusout)="focusout(i,j)" [value]="setValue(i,j)" >
         <br>
-        <input style="margin-top: 10px; width:50px !important" (focusout)="getDropWtTotal();getPulseWtTotal();getStoneWtTotal()" type="text" *ngIf="j == 4 || j == 5 || j == 6" [id] = "displayedColumns[j]+i+'value'" placeholder="/ct"></td>
+        <input style="margin-top: 10px; width:50px !important" (focusout)="getDropWtTotal();getPulseWtTotal();getStoneWtTotal();focusout(i,10)" type="text" *ngIf="j == 4 || j == 5 || j == 6" [id] = "displayedColumns[j]+i+'value'" placeholder="/ct"></td>
         <td style="text-align: center;"><button *ngIf="i == loopCount.length-1" (click)="delete()">Delete</button></td>
       </tr>
       <tr>
@@ -80,14 +81,14 @@
   <div class="footer">
     <table cellspacing="0" cellpadding="0">
       <tr>
-        <td> <label>Drop Amt: {{getDropWtTotal()}}</label></td>
-        <td> <label>Stone Amt: {{getStoneWtTotal()}}</label></td>
-        <td> <label>Pearl Amt: {{getPulseWtTotal()}}</label></td>
+        <td> <label>Drop Amt: {{dropWtTotal}}</label></td>
+        <td> <label>Stone Amt: {{totalStoneWt}}</label></td>
+        <td> <label>Pearl Amt: {{totalPulseWt}}</label></td>
         
       </tr>
       <tr>
-        <td><label>Labour Amt: {{getLabourAmt()}}</label></td>
-        <td><label>Gold Amt: {{getTotalAmt() -getDropWtTotal() - getPulseWtTotal() - getStoneWtTotal() - getLabourAmt()}}</label></td>
+        <td><label>Labour Amt: {{totalLabourAmt}}</label></td>
+        <td><label>Gold Amt: {{getTotalAmt() -dropWtTotal - totalPulseWt - totalStoneWt - totalLabourAmt}}</label></td>
       </tr>
     </table>
   

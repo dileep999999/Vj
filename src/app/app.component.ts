@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {  Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +7,26 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
+ 
   title = 'vj';
   dataSource = [];
   loopCount: number[] = [1];
-  displayedColumns: string[] = ['S.No', 'Item Name', 'Pc\'s','Gr.Wt','Dr.Wt','P.Wt','Stn.Wt','Net.Wt','Purity','Wastage','Fine Wt','Rate','Labour','Amount'];
+  displayedColumns: string[] = ['S.No', 'Item Name', 'Pc\'s','Gr.Wt','Dr.Wt','P.Wt','Stn.Wt','Net.Wt','Purity','Wastage %','Fine Wt','Rate','Labour','Amount'];
   displayedColumns2: string[] = ['Pc\'s','Gr.Wt','Dr.Wt','P.Wt','Stn.Wt','Net.Wt','Purity','Wastage','Fine Wt','Rate','Labour','Amount'];
   dropWtTotal: number = 0;
+  totalLabourAmt : number = 0;
+  totalStoneWt: number =0;
+  totalPulseWt: number =0;
+ 
   add(){
     this.loopCount[this.loopCount.length] = this.loopCount[this.loopCount.length-1]+1;
+   
+  }
+  setValue(i:number,j:number){
+    if(j==0){
+      (<HTMLInputElement>document.getElementById(this.displayedColumns[0]+i)).value = (this.loopCount[i]).toString();
+    }
+    return '';
   }
   delete(){
     this.loopCount.splice(-1)
@@ -46,6 +58,8 @@ export class AppComponent {
       const waste = (<HTMLInputElement>document.getElementById(this.displayedColumns[9]+i))?.value;
       if(net && waste){
         (<HTMLInputElement>document.getElementById(this.displayedColumns[10]+i)).value = ((Number(net) + ((Number(waste)*Number(net))/100)).toFixed(3)).toString();
+      } else {
+        (<HTMLInputElement>document.getElementById(this.displayedColumns[10]+i)).value = (Number(net)).toFixed(3).toString();
       }
     }
     else if(j == 10 || j == 11 || j == 12){
@@ -72,7 +86,8 @@ export class AppComponent {
         if(stone && stoneCost){
           addStone = Number(stone) * 5 * Number(stoneCost);
         }
-        (<HTMLInputElement>document.getElementById(this.displayedColumns[13]+i)).value = ((Number(fine) * (Number(gold)) + Number(gross) * Number(labour) + addDrop + addPulse + addStone).toFixed(3)).toString();
+        (<HTMLInputElement>document.getElementById(this.displayedColumns[13]+i)).value = ((Number(fine) * Number(gold) + Number(gross) * Number(labour) + addDrop + addPulse + addStone).toFixed(3)).toString();
+        if(j==12) this.getLabourAmt();
       }
     }
   }
@@ -156,7 +171,7 @@ export class AppComponent {
       if(drop && dropCost)
         value = value + Number(drop) * 5 * Number(dropCost);
     });
-    return value;
+    this.dropWtTotal = value;
   }
   getPulseWtTotal(){
     let value = 0;
@@ -166,7 +181,7 @@ export class AppComponent {
       if(drop && dropCost)
       value = value + Number(drop) * 5 * Number(dropCost);
     });
-    return value;
+    this.totalPulseWt = value;
   }
   getStoneWtTotal(){
     let value = 0;
@@ -176,17 +191,17 @@ export class AppComponent {
       if(drop && dropCost)
       value = value + Number(drop) * 5 * Number(dropCost);
     });
-    return value;
+    this.totalStoneWt = value;
   }
   getLabourAmt() {
     let value = 0;
     this.loopCount.forEach((x:any,i:number)=>{
-      const gross = (<HTMLInputElement>document.getElementById(this.displayedColumns[3]+i+'value'))?.value;
+      const gross = (<HTMLInputElement>document.getElementById(this.displayedColumns[3]+i))?.value;
       const labour = (<HTMLInputElement>document.getElementById(this.displayedColumns[12]+i))?.value;
       if(gross && labour)
       value = value + Number(gross) * Number(labour)
     });
-    return value;
+    this.totalLabourAmt =  value;
   }
  
 }
