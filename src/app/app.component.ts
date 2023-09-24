@@ -19,6 +19,7 @@ export class AppComponent {
   totalPulseWt: number =0;
   totalAmt: number = 0;
   currentDate: Date = new Date();
+  show : boolean = true;
  
   add(){
     this.loopCount[this.loopCount.length] = this.loopCount[this.loopCount.length-1]+1;
@@ -34,13 +35,9 @@ export class AppComponent {
     this.loopCount.splice(-1)
   }
   print(){
-    const printContent = document.getElementById("vj");
-    const WindowPrt = window.open('', '', 'left=0,top=0,width=1000,height=1000,toolbar=0,scrollbars=0,status=0');
-    WindowPrt?.document.write(printContent?.innerHTML ? printContent?.innerHTML : '');
-    WindowPrt?.document.close();
-    WindowPrt?.focus();
-    WindowPrt?.print();
-    WindowPrt?.close();
+    this.show = false;
+    window?.print();
+    
   }
   focusout(i:number,j:number){
     if(j == 3 || j == 4 || j == 5 || j == 6){
