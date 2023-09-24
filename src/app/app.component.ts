@@ -48,6 +48,9 @@ export class AppComponent {
       if(gross && (drop || pulse || stone)){
         (<HTMLInputElement>document.getElementById(this.displayedColumns[7]+i)).value = ((Number(gross) - (Number(drop) + Number(pulse) + Number(stone))).toFixed(3)).toString();
       }
+      else{
+        (<HTMLInputElement>document.getElementById(this.displayedColumns[7]+i)).value = (Number(gross)).toFixed(3).toString();
+      }
       if(j == 4) this.getDropWtTotal()
       else if(j == 5) this.getPulseWtTotal();
       else if(j==6) this.getStoneWtTotal();
