@@ -19,7 +19,7 @@ export class AppComponent {
   totalPulseWt: number =0;
   totalAmt: number = 0;
   currentDate: Date = new Date();
-  show : boolean = true;
+  
  
   add(){
     this.loopCount[this.loopCount.length] = this.loopCount[this.loopCount.length-1]+1;
@@ -35,7 +35,7 @@ export class AppComponent {
     this.loopCount.splice(-1)
   }
   print(){
-    this.show = false;
+    
     window?.print();
     
   }

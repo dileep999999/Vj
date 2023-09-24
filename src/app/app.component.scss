@@ -1,3 +1,16 @@
+@page { size: auto;  margin: 0mm; }
+@media print {
+    .noprint {
+       visibility: hidden;
+    }
+    .border {
+        border: none !important;
+        background: transparent !important;
+        -webkit-box-shadow: none !important;
+        -moz-box-shadow: none !important;
+        box-shadow: none !important;
+    }
+ }
 mat-form-field {
     width: 30%; /* Set the width as needed */
     margin-bottom: 16px; /* Add some bottom margin */
