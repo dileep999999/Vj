@@ -75,7 +75,7 @@ export class AppComponent {
       const dropCost = (<HTMLInputElement>document.getElementById(this.displayedColumns[4]+i+'value'))?.value;
       const pulseCost = (<HTMLInputElement>document.getElementById(this.displayedColumns[5]+i+'value'))?.value;
       const stoneCost = (<HTMLInputElement>document.getElementById(this.displayedColumns[6]+i+'value'))?.value;
-      if(fine && gold && labour){
+      if(fine && gold){
         let addDrop = 0;
         if(drop && dropCost){
           addDrop = Number(drop) * 5 * Number(dropCost);
@@ -88,7 +88,10 @@ export class AppComponent {
         if(stone && stoneCost){
           addStone = Number(stone) * 5 * Number(stoneCost);
         }
+        if(labour)
         (<HTMLInputElement>document.getElementById(this.displayedColumns[13]+i)).value = ((Number(fine) * Number(gold) + Number(gross) * Number(labour) + addDrop + addPulse + addStone).toFixed(3)).toString();
+        else
+        (<HTMLInputElement>document.getElementById(this.displayedColumns[13]+i)).value = ((Number(fine) * Number(gold) + addDrop + addPulse + addStone).toFixed(3)).toString();
         if(j==12) this.getLabourAmt();
       }
     }
