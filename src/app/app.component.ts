@@ -17,6 +17,8 @@ export class AppComponent {
   totalLabourAmt : number = 0;
   totalStoneWt: number =0;
   totalPulseWt: number =0;
+  totalAmt: number = 0;
+  currentDate: Date = new Date();
  
   add(){
     this.loopCount[this.loopCount.length] = this.loopCount[this.loopCount.length-1]+1;
@@ -161,7 +163,7 @@ export class AppComponent {
           value = value + Number((<HTMLInputElement>document.getElementById(this.displayedColumns[13]+i)).value);
         }
     })
-    return value;
+    this.totalAmt =  value;
   }
   getDropWtTotal(){
     let value = 0;
