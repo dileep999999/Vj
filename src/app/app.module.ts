@@ -12,9 +12,12 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
+import { VjHeaderComponent } from './VjHeader/vjheader.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    VjHeaderComponent
   ],
   imports: [
     FormsModule,
