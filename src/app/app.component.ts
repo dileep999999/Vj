@@ -19,13 +19,7 @@ export class AppComponent {
   totalPulseWt: number =0;
   totalAmt: number = 0;
   currentDate: Date = new Date();
-  addBtn: HTMLButtonElement;
-  constructor(){
-    this.addBtn = <HTMLButtonElement>document.getElementById('add');
-   window.addEventListener('key up',(event)=>{
-    console.log(event);
-   })
-  }
+  
   add(){
     this.loopCount[this.loopCount.length] = this.loopCount[this.loopCount.length-1]+1;
    
