@@ -19,6 +19,7 @@ export class AppComponent {
   totalPulseWt: number =0;
   totalAmt: number = 0;
   currentDate: Date = new Date();
+  paid: number = 0;
   
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -235,6 +236,12 @@ export class AppComponent {
       if(labourAmt) value = value + Number(labourAmt);
     });
     this.totalLabourAmt =  Number(value.toFixed(3));
+  }
+  amountPaid(){
+    const paid = (<HTMLInputElement>document.getElementById('paid'))?.value;
+    if(paid){
+      this.paid = Number(paid);
+    }
   }
  
 }
