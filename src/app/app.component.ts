@@ -1,4 +1,4 @@
-import {  Component, ElementRef } from '@angular/core';
+import {  Component, ElementRef, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +20,21 @@ export class AppComponent {
   totalAmt: number = 0;
   currentDate: Date = new Date();
   
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.key === 'Enter' && event.shiftKey) {
+      // Prevent the default Enter key behavior (e.g., form submission)
+      event.preventDefault();
+
+      document.getElementById('add')?.click();
+    } 
+    else if (event.key === 'Delete' && event.shiftKey) {
+      // Prevent the default Enter key behavior (e.g., form submission)
+      event.preventDefault();
+
+      document.getElementById('delete')?.click();
+    } 
+  }
   add(){
     this.loopCount[this.loopCount.length] = this.loopCount[this.loopCount.length-1]+1;
    
