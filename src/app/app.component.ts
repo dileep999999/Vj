@@ -140,7 +140,7 @@ export class AppComponent {
           value = value + Number((<HTMLInputElement>document.getElementById(this.displayedColumns[3]+i)).value);
         }
     })
-    return value;
+    return value.toFixed(2);
   }
   getDropWt() {
     let value = 0;
@@ -149,7 +149,7 @@ export class AppComponent {
           value = value + Number((<HTMLInputElement>document.getElementById(this.displayedColumns[4]+i)).value);
         }
     })
-    return value;
+    return value.toFixed(2);
   }
   getPulseWt() {
     let value = 0;
@@ -158,7 +158,7 @@ export class AppComponent {
           value = value + Number((<HTMLInputElement>document.getElementById(this.displayedColumns[5]+i)).value);
         }
     })
-    return value;
+    return value.toFixed(2);
   }
   getStoneWt() {
     let value = 0;
@@ -167,7 +167,7 @@ export class AppComponent {
           value = value + Number((<HTMLInputElement>document.getElementById(this.displayedColumns[6]+i)).value);
         }
     })
-    return value;
+    return value.toFixed(2);
   }
   getNetWt() {
     let value = 0;
@@ -176,7 +176,7 @@ export class AppComponent {
           value = value + Number((<HTMLInputElement>document.getElementById(this.displayedColumns[7]+i)).value);
         }
     })
-    return value;
+    return value.toFixed(2);
   }
   getFineWt() {
     let value = 0;
@@ -185,7 +185,7 @@ export class AppComponent {
           value = value + Number((<HTMLInputElement>document.getElementById(this.displayedColumns[10]+i)).value);
         }
     })
-    return value;
+    return value.toFixed(2);
   }
   getTotalAmt() {
     let value = 0;
