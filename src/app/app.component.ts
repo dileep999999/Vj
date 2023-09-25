@@ -62,9 +62,11 @@ export class AppComponent {
       const stone = (<HTMLInputElement>document.getElementById(this.displayedColumns[6]+i))?.value
       if(gross && (drop || pulse || stone)){
         (<HTMLInputElement>document.getElementById(this.displayedColumns[7]+i)).value = ((Number(gross) - (Number(drop) + Number(pulse) + Number(stone))).toFixed(3)).toString();
+        (<HTMLInputElement>document.getElementById(this.displayedColumns[10]+i)).value = (<HTMLInputElement>document.getElementById(this.displayedColumns[7]+i)).value 
       }
       else{
         (<HTMLInputElement>document.getElementById(this.displayedColumns[7]+i)).value = (Number(gross)).toFixed(3).toString();
+        (<HTMLInputElement>document.getElementById(this.displayedColumns[10]+i)).value = (<HTMLInputElement>document.getElementById(this.displayedColumns[7]+i)).value 
       }
       if(j == 4) this.getDropWtTotal()
       else if(j == 5) this.getPulseWtTotal();
@@ -192,7 +194,7 @@ export class AppComponent {
           value = value + Number((<HTMLInputElement>document.getElementById(this.displayedColumns[13]+i)).value);
         }
     })
-    this.totalAmt =  value;
+    this.totalAmt = Number(value.toFixed(2));
   }
   getDropWtTotal(){
     let value = 0;
@@ -202,7 +204,7 @@ export class AppComponent {
       if(drop && dropCost)
         value = value + Number(drop) * 5 * Number(dropCost);
     });
-    this.dropWtTotal = value;
+    this.dropWtTotal = Number(value.toFixed(2));
   }
   getPulseWtTotal(){
     let value = 0;
@@ -212,7 +214,7 @@ export class AppComponent {
       if(drop && dropCost)
       value = value + Number(drop) * 5 * Number(dropCost);
     });
-    this.totalPulseWt = value;
+    this.totalPulseWt = Number(value.toFixed(2));
   }
   getStoneWtTotal(){
     let value = 0;
@@ -222,7 +224,7 @@ export class AppComponent {
       if(drop && dropCost)
       value = value + Number(drop) * 5 * Number(dropCost);
     });
-    this.totalStoneWt = value;
+    this.totalStoneWt = Number(value.toFixed(2));
   }
   getLabourAmt() {
     let value = 0;
@@ -240,7 +242,7 @@ export class AppComponent {
   amountPaid(){
     const paid = (<HTMLInputElement>document.getElementById('paid'))?.value;
     if(paid){
-      this.paid = Number(paid);
+      this.paid = Number(Number(paid).toFixed(2));
     }
   }
  

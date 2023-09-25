@@ -126,7 +126,7 @@
     <input type="text" id="paid" class="border" (focusout)="amountPaid()">
   </div>
   <div style="margin-top: 20px; color:red; font-size:20px">
-    Balance : {{(totalAmt - paid).toFixed(2)}}
+    Balance : {{(totalAmt - paid)}}
   </div>
    <div style="text-align: center; margin-top: 20px;" class="noprint">
     <button mat-button color="primary" (click)="print()">Print</button>
