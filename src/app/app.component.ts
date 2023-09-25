@@ -1,4 +1,4 @@
-import {  Component } from '@angular/core';
+import {  Component, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -19,8 +19,13 @@ export class AppComponent {
   totalPulseWt: number =0;
   totalAmt: number = 0;
   currentDate: Date = new Date();
-  
- 
+  addBtn: HTMLButtonElement;
+  constructor(){
+    this.addBtn = <HTMLButtonElement>document.getElementById('add');
+   window.addEventListener('key up',(event)=>{
+    console.log(event);
+   })
+  }
   add(){
     this.loopCount[this.loopCount.length] = this.loopCount[this.loopCount.length-1]+1;
    
@@ -75,6 +80,8 @@ export class AppComponent {
       const dropCost = (<HTMLInputElement>document.getElementById(this.displayedColumns[4]+i+'value'))?.value;
       const pulseCost = (<HTMLInputElement>document.getElementById(this.displayedColumns[5]+i+'value'))?.value;
       const stoneCost = (<HTMLInputElement>document.getElementById(this.displayedColumns[6]+i+'value'))?.value;
+      const labourCost = (<HTMLInputElement>document.getElementById(this.displayedColumns[12]+i+'value'))?.value;
+      let value =0;
       if(fine && gold){
         let addDrop = 0;
         if(drop && dropCost){
@@ -89,11 +96,20 @@ export class AppComponent {
           addStone = Number(stone) * 5 * Number(stoneCost);
         }
         if(labour)
-        (<HTMLInputElement>document.getElementById(this.displayedColumns[13]+i)).value = ((Number(fine) * Number(gold) + Number(gross) * Number(labour) + addDrop + addPulse + addStone).toFixed(3)).toString();
+          value = Number((Number(fine) * Number(gold) + Number(gross) * Number(labour) + addDrop + addPulse + addStone).toFixed(3));
         else
-        (<HTMLInputElement>document.getElementById(this.displayedColumns[13]+i)).value = ((Number(fine) * Number(gold) + addDrop + addPulse + addStone).toFixed(3)).toString();
+          value = Number((Number(fine) * Number(gold) + addDrop + addPulse + addStone).toFixed(3));
+        
         if(j==12) this.getLabourAmt();
       }
+      if(labourCost)
+      {
+          (<HTMLInputElement>document.getElementById(this.displayedColumns[13]+i)).value = (Number(value) + Number(labourCost)).toString();
+      }
+      else{
+        (<HTMLInputElement>document.getElementById(this.displayedColumns[13]+i)).value = value.toString();
+      }
+      this.getTotalAmt();
     }
   }
   getPieces(){
@@ -203,10 +219,13 @@ export class AppComponent {
     this.loopCount.forEach((x:any,i:number)=>{
       const gross = (<HTMLInputElement>document.getElementById(this.displayedColumns[3]+i))?.value;
       const labour = (<HTMLInputElement>document.getElementById(this.displayedColumns[12]+i))?.value;
-      if(gross && labour)
-      value = value + Number(gross) * Number(labour)
+      const labourAmt = (<HTMLInputElement>document.getElementById(this.displayedColumns[12]+i + 'value'))?.value;
+      if(gross && labour){
+        value = value + Number(gross) * Number(labour);
+      }
+      if(labourAmt) value = value + Number(labourAmt);
     });
-    this.totalLabourAmt =  value;
+    this.totalLabourAmt =  Number(value.toFixed(3));
   }
  
 }

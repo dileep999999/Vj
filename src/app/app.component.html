@@ -66,7 +66,7 @@
     <thead>
       <tr>
         <th *ngFor="let x of displayedColumns">{{x}}</th>
-        <th class="noprint"><button (click)="add()">Add</button></th>
+        <th class="noprint"><button id="add" (click)="add()">Add</button></th>
       </tr>
     </thead>
     <tbody>
@@ -74,7 +74,9 @@
         
         <td  style="text-align: center;" *ngFor="let x of displayedColumns;index as j"><input class="border" [ngClass]="j==1 || j ==13 ? 'w-150' : 'w-50'" type ="text" [id]="displayedColumns[j]+i" (focusout)="focusout(i,j)" [value]="setValue(i,j)" >
         <br>
-        <input class="border" style="margin-top: 10px; width:50px !important" (focusout)="getDropWtTotal();getPulseWtTotal();getStoneWtTotal();focusout(i,10)" type="text" *ngIf="j == 4 || j == 5 || j == 6" [id] = "displayedColumns[j]+i+'value'" placeholder="/ct"></td>
+        <input class="border" style="margin-top: 10px; width:50px !important" (focusout)="getDropWtTotal();getPulseWtTotal();getStoneWtTotal();focusout(i,10)" type="text" *ngIf="j == 4 || j == 5 || j == 6" [id] = "displayedColumns[j]+i+'value'" placeholder="/ct">
+        <input class="border" style="margin-top: 10px; width:50px !important" (focusout)="getLabourAmt();focusout(i,12)" type="text" *ngIf="j == 12" [id]="displayedColumns[j]+i+'value'"></td>
+
         <td class="noprint" style="text-align: center;"><button *ngIf="i == loopCount.length-1" (click)="delete()">Delete</button></td>
       </tr>
       <tr>
@@ -90,7 +92,7 @@
         <td style="text-align: center;">{{getFineWt()}}</td>
         <td style="text-align: center;"></td>
         <td style="text-align: center;"></td>
-        <td style="text-align: center;">{{getTotalAmt()}}</td>
+        <td style="text-align: center;">{{totalAmt}}</td>
         <td></td>
       </tr>
     </tbody>
@@ -107,7 +109,7 @@
       </tr>
       <tr>
         <td><label>Labour Amt: {{totalLabourAmt}}</label></td>
-        <td><label>Gold Amt: {{totalAmt -dropWtTotal - totalPulseWt - totalStoneWt - totalLabourAmt}}</label></td>
+        <td><label>Gold Amt: {{totalAmt > 0 ? (totalAmt -dropWtTotal - totalPulseWt - totalStoneWt - totalLabourAmt) : 0}}</label></td>
       </tr>
     </table>
   
