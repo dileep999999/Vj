@@ -240,6 +240,7 @@ export class AppComponent {
     this.totalLabourAmt =  Number(value.toFixed(3));
   }
   amountPaid(){
+    this.paid = 0;
     const paid = (<HTMLInputElement>document.getElementById('paid'))?.value;
     if(paid){
       this.paid = Number(Number(paid).toFixed(2));
