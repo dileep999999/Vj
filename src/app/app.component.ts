@@ -62,26 +62,35 @@ export class AppComponent {
       const stone = (<HTMLInputElement>document.getElementById(this.displayedColumns[6]+i))?.value
       if(gross && (drop || pulse || stone)){
         (<HTMLInputElement>document.getElementById(this.displayedColumns[7]+i)).value = ((Number(gross) - (Number(drop) + Number(pulse) + Number(stone))).toFixed(3)).toString();
-        (<HTMLInputElement>document.getElementById(this.displayedColumns[10]+i)).value = (<HTMLInputElement>document.getElementById(this.displayedColumns[7]+i)).value 
+        
       }
       else{
         (<HTMLInputElement>document.getElementById(this.displayedColumns[7]+i)).value = (Number(gross)).toFixed(3).toString();
-        (<HTMLInputElement>document.getElementById(this.displayedColumns[10]+i)).value = (<HTMLInputElement>document.getElementById(this.displayedColumns[7]+i)).value 
+         
       }
       if(j == 4) this.getDropWtTotal()
       else if(j == 5) this.getPulseWtTotal();
       else if(j==6) this.getStoneWtTotal();
+      this.getFineWeight(i,j);
     }
     else if(j == 7 || j == 9){
-      const net = (<HTMLInputElement>document.getElementById(this.displayedColumns[7]+i))?.value;
-      const waste = (<HTMLInputElement>document.getElementById(this.displayedColumns[9]+i))?.value;
-      if(net && waste){
-        (<HTMLInputElement>document.getElementById(this.displayedColumns[10]+i)).value = ((Number(net) + ((Number(waste)*Number(net))/100)).toFixed(3)).toString();
-      } else {
-        (<HTMLInputElement>document.getElementById(this.displayedColumns[10]+i)).value = (Number(net)).toFixed(3).toString();
-      }
+    this.getFineWeight(i,j);
     }
     else if(j == 10 || j == 11 || j == 12){
+      this.getTotalCost(i,j)
+    }
+  }
+  getFineWeight(i:number,j:number){
+    const net = (<HTMLInputElement>document.getElementById(this.displayedColumns[7]+i))?.value;
+    const waste = (<HTMLInputElement>document.getElementById(this.displayedColumns[9]+i))?.value;
+    if(net && waste){
+      (<HTMLInputElement>document.getElementById(this.displayedColumns[10]+i)).value = ((Number(net) + ((Number(waste)*Number(net))/100)).toFixed(3)).toString();
+    } else {
+      (<HTMLInputElement>document.getElementById(this.displayedColumns[10]+i)).value = (Number(net)).toFixed(3).toString();
+    }
+    this.getTotalCost(i,j);
+  }
+    getTotalCost(i: number, j:number){
       const gross = (<HTMLInputElement>document.getElementById(this.displayedColumns[3]+i))?.value;
       const fine = (<HTMLInputElement>document.getElementById(this.displayedColumns[10]+i))?.value;
       const gold = (<HTMLInputElement>document.getElementById(this.displayedColumns[11]+i))?.value;
@@ -123,7 +132,7 @@ export class AppComponent {
       }
       this.getTotalAmt();
     }
-  }
+  
   getPieces(){
     let value = 0;
     this.loopCount.forEach((x:any,i:number)=>{
